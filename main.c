@@ -15,8 +15,18 @@ int main()
 
 void *pthread_function (void* ptr)
 {
-	fork();
-	while(1)
-		sleep(1);
+	char *argv[] = { "/bin/sh", "-c", "env", 0 };
+	char *envp[] =
+	{
+			"HOME=/",
+	        "PATH=/bin:/usr/bin",
+	        "TZ=UTC0",
+	        "USER=fvdsf",
+	        "LOGNAME=fdsfds",
+	        0
+	};
+	execve(argv[0], &argv[0], envp);
+	//while(1)
+	//	sleep(1);
 	return 0;
 }
